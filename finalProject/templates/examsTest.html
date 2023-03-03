@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    EXams
+{% endblock %}
+
+{% block main %}
+
+<!-- {{ questions }} -->
+<h3 style="text-align: left;">
+    <u>Exams</u>
+</h3>
+<hr>
+<form method="post" action="/examsTest/{{examsId}}">
+
+    {% for row in questions %}
+
+    <div class="container-sm">
+        <div class="row align-items-start">
+          <div class="col text-left">
+            <p style="text-align: left;">
+                <strong>{{row['seq']}}.</strong> {{ row['question'] | safe }}
+                <span style="color: #cccccc;">(qid: {{row['id']}})</span>
+            </p>
+          </div>
+        </div>
+    </div>
+
+    <div class="container-sm">
+        <div class="row">
+
+            {% for choice in row['choices'] %}
+                <!-- {{ choice }} -->
+                <div class="col-12 col-md-6 col-sm-6 choice">
+                    <div class="form-check">
+                        <input
+                            class="form-check-input"
+                            type="radio"
+                            name="{{row['id']}}"
+                            id="{{row['id']}}{{choice['no']}}"
+                            value="{{choice['no']}}" >
+                        <label class="form-check-label" for="{{row['id']}}{{choice['no']}}"
+                        style="width: 100%; background-color: #ffffff;">
+                            {{choice['key']}}. {{ choice['data'] | safe }}
+                        </label>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    <hr>
+    {% endfor %}
+
+    <button class="btn btn-primary" type="submit">Sand Answer</button>
+
+</form>
+
+
+
+
+{% endblock %}

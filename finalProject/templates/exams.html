@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    EXams
+{% endblock %}
+
+{% block main %}
+
+<!-- {{ sujects }} -->
+
+    <form action="/exams" method="post">
+
+        <div class="mb-3">
+            <select
+                class="form-select mx-auto w-auto"
+                aria-label="Default select example"
+                id="subject"
+                name="subject" >
+
+                <!-- <option selected>Select Subject</option> -->
+                {% for row in sujects %}
+                    <!-- {{ row['level'] }} <br> -->
+                    <option value="{{row['subject']}}">{{ row['subject'] }}</option>
+                {% endfor %}
+
+            </select>
+        </div>
+        <div class="mb-3">
+            <select
+                class="form-select mx-auto w-auto"
+                aria-label="Default select example"
+                id="level"
+                name="level" >
+                <!-- <option selected>Select Level</option> -->
+
+                {% for row in levelList %}
+                    <!-- {{ row['level'] }} <br> -->
+                    <option value="{{row['level']}}">{{ row['level'] }}</option>
+                {% endfor %}
+
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+
+<hr>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Ex id</th>
+                <th scope="col" width="50%">Name</th>
+                <th scope="col">level</th>
+                <th scope="col">question </th>
+                <!-- <th scope="col">AVG Score(%)</th> -->
+                <th scope="col">Answer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in exams %}
+                <tr>
+                    <td>{{row['id']}}</td>
+                    <td>{{row['name']}}</td>
+                    <td>{{row['level']}}</td>
+                    <td>{{row['cnt']}}</td>
+                    <!-- <td>avg score</td> -->
+                    <td>
+                        <a
+                            class="btn btn-success btn-sm"
+                            href="/examsTest/{{row['id']}}">Start Exams</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
