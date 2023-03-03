@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    EXams
+{% endblock %}
+
+{% block main %}
+
+<!-- {{ questions }} -->
+<h3 style="text-align: left;">
+    Result's Score: {{ percent }}%
+</h3>
+<hr>
+<!-- {{ question }} -->
+
+<div class="row">
+    <div class="col-12 col-md-12 col-sm-12">
+    <table class="table text-left">
+        <thead>
+        <tr>
+            <th>No.</th>
+            <th>Solution</th>
+            <th>Your answer</th>
+            <th>Result</th>
+
+        </tr>
+        </thead>
+        {% for row in question %}
+        <tr>
+            <td>{{ row['no'] }}</td>
+            <td>{{ row['sol'] }}</td>
+            <td>{{ row['st_ans'] }}</td>
+            <td style="text-align: left;">{{ row['text'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+</div>
+
+
+{% endblock %}

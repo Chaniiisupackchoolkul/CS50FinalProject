@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Subject</th>
+                <th scope="col">Level</th>
+                <th scope="col">Name</th>
+                <th scope="col">Score(%)</th>
+                <th scope="col">Retest</th>
+                <th scope="col">Exams' Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+                <tr>
+                    <td>{{ row['subject'] }}</td>
+                    <td>{{ row['level'] }}</td>
+                    <td>{{ row['name'] }}</td>
+                    <td>{{ row['score'] }}</td>
+                    <td>
+                        <a
+                            class="btn btn-success btn-sm"
+                            href="/examsTest/{{row['id']}}">Retest</a>
+                    </td>
+
+                    <td>{{ row['created_time'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

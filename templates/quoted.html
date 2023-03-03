@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+
+<form action="/quote" method="post">
+    <div class="form-group">
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="symbol" placeholder="Symbol" type="text">
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Quote</button>
+</form>
+
+    A share of {{ symbol['name'] }} ({{symbol['symbol']}}) costs ${{symbol['price']}}.
+
+    <hr>
+    Views Stock Lists At <a target="_blank" href="https://stockanalysis.com/stocks/screener/">Click Here</a>
+{% endblock %}
